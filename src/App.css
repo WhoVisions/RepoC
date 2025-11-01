@@ -44,3 +44,10 @@
   color: #ff6262;
   margin-bottom: 1rem;
 }
+
+.resolved-language {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}

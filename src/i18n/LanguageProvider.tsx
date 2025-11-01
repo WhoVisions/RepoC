@@ -47,16 +47,22 @@ export function LanguageProvider({
   defaultLanguage = 'en',
   fallbackLanguage,
 }: LanguageProviderProps) {
-  const [requestedLanguage, setRequestedLanguage] = useState<string>(() => {
+  const initialLanguage = useMemo(() => {
     if (typeof window !== 'undefined') {
       const stored = window.localStorage.getItem(STORAGE_KEY)
       if (stored) {
         return stored
       }
+
+      const browserLanguage = window.navigator.language ?? window.navigator.languages?.[0]
+      if (browserLanguage) {
+        return browserLanguage
+      }
     }
     return defaultLanguage
-  })
-  const [resolvedLanguage, setResolvedLanguage] = useState<string>(requestedLanguage)
+  }, [defaultLanguage])
+  const [requestedLanguage, setRequestedLanguage] = useState<string>(initialLanguage)
+  const [resolvedLanguage, setResolvedLanguage] = useState<string>(initialLanguage)
   const [translations, setTranslations] = useState<TranslationDictionary>({})
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)

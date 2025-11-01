@@ -6,5 +6,6 @@
   "app.language.english": "English",
   "app.language.spanish": "Spanish",
   "app.language.french": "French",
-  "app.language.german": "German"
+  "app.language.german": "German",
+  "app.language.resolved": "Using {{locale}} translations"
 }

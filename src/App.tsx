@@ -25,10 +25,12 @@ function App() {
               <option value="de">{t('app.language.german', 'German')}</option>
             </select>
           </label>
-          {resolvedLanguage !== language && !error ? (
-            <small>({resolvedLanguage})</small>
-          ) : null}
         </div>
+        {resolvedLanguage !== language && !error ? (
+          <p className="resolved-language">
+            {t('app.language.resolved', 'Using {{locale}} translations', { locale: resolvedLanguage })}
+          </p>
+        ) : null}
         {error ? <p className="error">{error.message}</p> : null}
         <div className="card">
           <button onClick={() => setCount((count) => count + 1)}>
