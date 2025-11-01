@@ -8,10 +8,13 @@ import {
 import EditorShowcase from './components/EditorShowcase'
 import CounterCard from './components/CounterCard'
 import SkipLink from './components/SkipLink'
+import { useLanguage, useTranslation } from './i18n'
 
 function App() {
   const [count, setCount] = useState(0)
   const [analyticsConsent, setAnalyticsConsentState] = useState<boolean | null>(null)
+  const { language, setLanguage, resolvedLanguage, isLoading, error } = useLanguage()
+  const { t } = useTranslation()
 
   useEffect(() => {
     setupAnalyticsFromStorage()
@@ -61,6 +64,31 @@ function App() {
             Accessible counter demo with keyboard shortcuts and ARIA support.
           </p>
         </section>
+
+        <div className="language-picker">
+          <label>
+            <span>{t('app.language.select', 'Select language')}</span>
+            <select
+              value={language}
+              onChange={(event) => setLanguage(event.target.value)}
+              disabled={isLoading}
+            >
+              <option value="en">{t('app.language.english', 'English')}</option>
+              <option value="es">{t('app.language.spanish', 'Spanish')}</option>
+              <option value="fr">{t('app.language.french', 'French')}</option>
+              <option value="de">{t('app.language.german', 'German')}</option>
+            </select>
+          </label>
+          {resolvedLanguage !== language && !error ? (
+            <small>({resolvedLanguage})</small>
+          ) : null}
+        </div>
+        {resolvedLanguage !== language && !error ? (
+          <p className="resolved-language">
+            {t('app.language.resolved', 'Using {{locale}} translations', { locale: resolvedLanguage })}
+          </p>
+        ) : null}
+        {error ? <p className="error">{error.message}</p> : null}
 
         <section className="flex flex-col items-center gap-sm rounded-2xl bg-brand-surface px-xl py-lg shadow-lg">
           <p className="text-lg font-medium text-brand-neutral">
