@@ -1,0 +1,126 @@
+:root {
+  color-scheme: light;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #94a3b8;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  text-decoration-color: #1d4ed8;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero {
+  background: #1e293b;
+  color: #f8fafc;
+  border-radius: 1.25rem;
+  padding: 2.5rem;
+  box-shadow: 0 24px 40px -24px rgba(15, 23, 42, 0.4);
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 720px) {
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 16px 32px -28px rgba(15, 23, 42, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -24px rgba(15, 23, 42, 0.35);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #e0e7ff;
+  color: #1e3a8a;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.meta {
+  color: #475569;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+article {
+  background: #ffffff;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  padding: 2rem;
+  box-shadow: 0 14px 28px -24px rgba(15, 23, 42, 0.4);
+}
+
+article h2 {
+  margin-top: 2rem;
+}
+
+article p {
+  margin: 0.75rem 0;
+}
+
+footer {
+  margin-top: 4rem;
+  color: #64748b;
+  font-size: 0.875rem;
+  text-align: center;
+}
