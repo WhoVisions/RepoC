@@ -1,23 +1,10 @@
-import { useState } from 'react'
-import './App.css'
+import EditorShowcase from './components/EditorShowcase'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <h1>RepoC</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
-      </div>
-    </>
+    <main className="flex min-h-screen w-full bg-brand-surface">
+      <EditorShowcase />
+    </main>
   )
 }
 
