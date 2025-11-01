@@ -1,0 +1,124 @@
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
+
+import type { TranslationDictionary, TranslationLoader } from './jsonLoader'
+
+type LanguageContextValue = {
+  language: string
+  setLanguage: (locale: string) => void
+  resolvedLanguage: string
+  translations: TranslationDictionary
+  t: (key: string, defaultValue?: string) => string
+  isLoading: boolean
+  error: Error | null
+}
+
+const LanguageContext = createContext<LanguageContextValue | undefined>(undefined)
+
+type LanguageProviderProps = {
+  loader: TranslationLoader
+  children: ReactNode
+  defaultLanguage?: string
+  fallbackLanguage?: string
+}
+
+export function LanguageProvider({
+  loader,
+  children,
+  defaultLanguage = 'en',
+  fallbackLanguage,
+}: LanguageProviderProps) {
+  const [requestedLanguage, setRequestedLanguage] = useState(defaultLanguage)
+  const [resolvedLanguage, setResolvedLanguage] = useState(defaultLanguage)
+  const [translations, setTranslations] = useState<TranslationDictionary>({})
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [error, setError] = useState<Error | null>(null)
+
+  const requestIdRef = useRef(0)
+
+  useEffect(() => {
+    let cancelled = false
+    const requestId = ++requestIdRef.current
+
+    async function applyTranslations(locale: string, allowFallback: boolean) {
+      try {
+        const data = await loader(locale)
+        if (cancelled || requestIdRef.current !== requestId) {
+          return
+        }
+        setTranslations(data)
+        setResolvedLanguage(locale)
+        setError(null)
+      } catch (err) {
+        if (allowFallback && fallbackLanguage && locale !== fallbackLanguage) {
+          await applyTranslations(fallbackLanguage, false)
+          return
+        }
+
+        if (cancelled || requestIdRef.current !== requestId) {
+          return
+        }
+
+        setTranslations({})
+        setResolvedLanguage(locale)
+        setError(err instanceof Error ? err : new Error(String(err)))
+      } finally {
+        if (!cancelled && requestIdRef.current === requestId) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    setIsLoading(true)
+    void applyTranslations(requestedLanguage, true)
+
+    return () => {
+      cancelled = true
+    }
+  }, [requestedLanguage, loader, fallbackLanguage])
+
+  const updateLanguage = useCallback((locale: string) => {
+    setRequestedLanguage(locale)
+  }, [])
+
+  const translate = useCallback(
+    (key: string, defaultValue?: string) => {
+      return translations[key] ?? defaultValue ?? key
+    },
+    [translations],
+  )
+
+  const value = useMemo<LanguageContextValue>(
+    () => ({
+      language: requestedLanguage,
+      setLanguage: updateLanguage,
+      resolvedLanguage,
+      translations,
+      t: translate,
+      isLoading,
+      error,
+    }),
+    [requestedLanguage, updateLanguage, resolvedLanguage, translations, translate, isLoading, error],
+  )
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
+}
+
+function useLanguageContext() {
+  const context = useContext(LanguageContext)
+  if (!context) {
+    throw new Error('useLanguageContext must be used within a LanguageProvider')
+  }
+  return context
+}
+
+export function useLanguage() {
+  const { language, setLanguage, resolvedLanguage, isLoading, error } = useLanguageContext()
+  return { language, setLanguage, resolvedLanguage, isLoading, error }
+}
+
+export function useTranslation() {
+  const { t, translations, resolvedLanguage, isLoading, error } = useLanguageContext()
+  return { t, translations, resolvedLanguage, isLoading, error }
+}
+
