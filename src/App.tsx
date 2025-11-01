@@ -5,6 +5,7 @@ import {
   setupAnalyticsFromStorage,
   trackEvent,
 } from './lib/analytics'
+import EditorShowcase from './components/EditorShowcase'
 import './App.css'
 
 function App() {
@@ -50,6 +51,11 @@ function App() {
             Edit <code>src/App.tsx</code> and save to test HMR
           </p>
         </div>
+      </div>
+      <main className="flex min-h-screen w-full bg-brand-surface">
+        <EditorShowcase />
+      </main>
+      <div>
         {analyticsConsent === null && (
           <div className="consent-banner">
             <p>Allow anonymous analytics so we can improve the app?</p>
@@ -72,8 +78,7 @@ function App() {
           </div>
         )}
       </div>
-    </>
-  )
+    </>  )
 }
 
 export default App
