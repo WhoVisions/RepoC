@@ -1,0 +1,31 @@
+.gallery-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gallery-grid__item {
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px -15px rgba(15, 23, 42, 0.35);
+}
+
+.gallery-grid__image {
+  background: linear-gradient(120deg, #e0f2fe, #ede9fe);
+  padding-top: 70%;
+}
+
+.gallery-grid__badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #1f2937;
+  color: #ffffff;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}

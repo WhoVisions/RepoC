@@ -1,0 +1,58 @@
+.marketing-home {
+  display: grid;
+  gap: 2.5rem;
+  text-align: left;
+}
+
+.marketing-home__hero {
+  display: grid;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(255, 204, 153, 0.2), rgba(204, 229, 255, 0.2));
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.marketing-home__hero h2 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+}
+
+.marketing-home__hero p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #404040;
+}
+
+.marketing-home__cta {
+  display: inline-block;
+  align-self: start;
+  padding: 0.75rem 1.5rem;
+  background: #111827;
+  color: #ffffff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.marketing-home__cta:hover,
+.marketing-home__cta:focus {
+  background: #1f2937;
+}
+
+.marketing-home__highlights {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.marketing-home__highlights article {
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+}
+
+.marketing-home__highlights h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
