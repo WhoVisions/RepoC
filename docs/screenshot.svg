@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">RepoC application preview</title>
+  <desc id="desc">Stylized illustration of the RepoC counter card with three rounded buttons.</desc>
+  <rect width="1280" height="720" fill="#f8fafc" rx="24" />
+  <g transform="translate(140 120)">
+    <rect width="1000" height="140" rx="28" fill="#2563eb" opacity="0.1" />
+    <rect x="32" y="32" width="620" height="32" rx="16" fill="#1f2937" opacity="0.85" />
+    <rect x="32" y="84" width="820" height="20" rx="10" fill="#1f2937" opacity="0.45" />
+  </g>
+  <g transform="translate(220 320)">
+    <rect width="840" height="360" rx="32" fill="#ffffff" stroke="#e2e8f0" stroke-width="4" />
+    <rect x="48" y="60" width="320" height="32" rx="16" fill="#1f2937" opacity="0.8" />
+    <rect x="48" y="116" width="460" height="26" rx="13" fill="#1f2937" opacity="0.55" />
+    <g transform="translate(48 192)">
+      <rect width="220" height="60" rx="30" fill="#2563eb" />
+      <rect x="248" width="220" height="60" rx="30" fill="#10b981" />
+      <rect x="496" width="220" height="60" rx="30" fill="#ef4444" />
+    </g>
+  </g>
+  <rect x="1120" y="48" width="120" height="36" rx="18" fill="#22c55e" />
+  <text x="1180" y="72" font-family="'Inter', system-ui" font-size="20" text-anchor="middle" fill="#fff">a11y</text>
+</svg>

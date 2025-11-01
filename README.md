@@ -1,6 +1,13 @@
 # RepoC
 
+[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)](#getting-started)
+[![Lint](https://img.shields.io/badge/lint-clean-2563eb.svg)](#getting-started)
+[![Tests](https://img.shields.io/badge/tests-vitest-9333ea.svg)](#testing)
+[![License](https://img.shields.io/badge/license-MIT-111111.svg)](#license)
+
 RepoC is a small Vite + React demo that showcases an accessible counter widget. It focuses on inclusive keyboard navigation, ARIA semantics, and clear documentation so the project can be shared publicly with confidence.
+
+![RepoC app screenshot](docs/screenshot.svg)
 
 ## Features
 - Accessible counter card with labeled controls and live status updates
@@ -28,6 +35,15 @@ npm run lint
 npm run build
 ```
 
+## Testing
+```bash
+# Run the unit tests once
+npm run test -- --watch=false
+
+# Or start Vitest in watch mode
+npm run test
+```
+
 ## Project Structure
 ```text
 src/
@@ -44,8 +60,15 @@ src/
 - Keyboard shortcuts are declared with `aria-keyshortcuts` and documented above.
 - Buttons manage disabled states to prevent keyboard traps.
 
+> **Why accessibility matters**: Inclusive design helps keyboard-only users, screen reader users, and anyone operating in constrained environments. Explore the [WCAG 2.2 quick reference](https://www.w3.org/WAI/WCAG22/quickref/) to learn more.
+
+## Deploying a Live Demo
+- **Vercel**: Import the GitHub repository, keep the default Vite settings, and set the output directory to `dist`.
+- **Netlify**: Connect the repo, use `npm run build` as the build command, and `dist` as the publish directory.
+- **Static hosting**: Run `npm run build` and upload the generated `dist` folder to your static host (GitHub Pages, Cloudflare Pages, etc.).
+
 ## Contributing
 Issues and pull requests are welcome! Please run `npm run lint` before submitting.
 
 ## License
-MIT ? RepoC contributors
+MIT (c) RepoC contributors
