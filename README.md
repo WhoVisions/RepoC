@@ -1,37 +1,54 @@
 # RepoC
-RepoC
 
-## What is in the repo
+RepoC is a small Vite + React demo that showcases an accessible counter widget. It focuses on inclusive keyboard navigation, ARIA semantics, and clear documentation so the project can be shared publicly with confidence.
 
-- npm package `repoc` 1.0.0
-- scripts: `npm run dev`, `npm run build`, `npm run preview`, `npm run lint`
-- top-level directories: `src/`
+## Features
+- Accessible counter card with labeled controls and live status updates
+- Global skip link for bypassing repeated content
+- Keyboard shortcuts for quick increment, decrement, and reset actions
+- Modern styling with focus-visible outlines and screen reader instructions
 
-### Layout
+## Keyboard Shortcuts
+- **Increase**: `ArrowUp`, `ArrowRight`, `+`
+- **Decrease**: `ArrowDown`, `ArrowLeft`, `-`
+- **Reset**: `R`, `Escape`, `0`
 
-| Folder | Files |
-|---|---|
-| `src/` | 12 |
+## Getting Started
+```bash
+# Install dependencies
+npm install
 
-### Scripts (from their own docstrings)
+# Start the dev server
+npm run dev
 
-| Script | What it says it does |
-|---|---|
-| `src/app/api/schemas.ts` | * API schemas and utilities for booking creation and gallery retrieval routes. |
+# Lint the project
+npm run lint
 
-### Packages
+# Build for production
+npm run build
+```
 
-- `.` (package.json)
+## Project Structure
+```text
+src/
+  App.tsx            # Application layout with skip link and main content region
+  App.css            # Styling, including focus-visible and skip link treatment
+  components/
+    CounterCard.tsx  # Accessible counter component
+    SkipLink.tsx     # Reusable skip link component
+```
 
-### Docs
+## Accessibility Notes
+- Interactive elements expose descriptive `aria-label` and `aria-describedby` attributes.
+- The counter announces changes via a `role="status"` live region.
+- Keyboard shortcuts are declared with `aria-keyshortcuts` and documented above.
+- Buttons manage disabled states to prevent keyboard traps.
 
-| Doc | Title |
-|---|---|
-| `claude.md` | RepoC - Comprehensive Project Documentation |
+## Contributing
+Issues and pull requests are welcome! Please run `npm run lint` before submitting.
 
-### Recent work
-
-- 2025-11-16 Merge pull request #17 from WhoVisions/claude/check-build-comprehensive-015kFMzX4szCQjkTAdEDm1HJ
+## License
+MIT ? RepoC contributors
 
 <!-- nougen:fleet-role:begin (generated from NouGenRelay fleet/manifest.json; edit the manifest, not this block) -->
 ## Fleet role
