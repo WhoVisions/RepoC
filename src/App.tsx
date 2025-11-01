@@ -79,9 +79,6 @@ function App() {
               <option value="de">{t('app.language.german', 'German')}</option>
             </select>
           </label>
-          {resolvedLanguage !== language && !error ? (
-            <small>({resolvedLanguage})</small>
-          ) : null}
         </div>
         {resolvedLanguage !== language && !error ? (
           <p className="resolved-language">
