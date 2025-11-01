@@ -21,6 +21,8 @@ function App() {
             >
               <option value="en">{t('app.language.english', 'English')}</option>
               <option value="es">{t('app.language.spanish', 'Spanish')}</option>
+              <option value="fr">{t('app.language.french', 'French')}</option>
+              <option value="de">{t('app.language.german', 'German')}</option>
             </select>
           </label>
           {resolvedLanguage !== language && !error ? (
@@ -30,7 +32,7 @@ function App() {
         {error ? <p className="error">{error.message}</p> : null}
         <div className="card">
           <button onClick={() => setCount((count) => count + 1)}>
-            {t('app.buttonLabel', 'count is')} {count}
+            {t('app.buttonLabel', 'count is {{count}}', { count })}
           </button>
           <p>
             {t('app.instructions', 'Edit src/App.tsx and save to test HMR')}

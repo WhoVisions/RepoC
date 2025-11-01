@@ -1,0 +1,10 @@
+{
+  "app.title": "RepoC",
+  "app.instructions": "Bearbeite src/App.tsx und speichere, um HMR zu testen",
+  "app.buttonLabel": "Z\u00e4hler ist {{count}}",
+  "app.language.select": "Sprache ausw\u00e4hlen",
+  "app.language.english": "Englisch",
+  "app.language.spanish": "Spanisch",
+  "app.language.french": "Franz\u00f6sisch",
+  "app.language.german": "Deutsch"
+}

@@ -1,8 +1,10 @@
 {
   "app.title": "RepoC",
   "app.instructions": "Edita src/App.tsx y guarda para probar HMR",
-  "app.buttonLabel": "la cuenta es",
+  "app.buttonLabel": "la cuenta es {{count}}",
   "app.language.select": "Selecciona idioma",
-  "app.language.english": "Ingl?s",
-  "app.language.spanish": "Espa?ol"
+  "app.language.english": "Ingl\u00e9s",
+  "app.language.spanish": "Espa\u00f1ol",
+  "app.language.french": "Franc\u00e9s",
+  "app.language.german": "Alem\u00e1n"
 }

@@ -3,12 +3,31 @@ import type { ReactNode } from 'react'
 
 import type { TranslationDictionary, TranslationLoader } from './jsonLoader'
 
+type InterpolationValues = Record<string, string | number>
+
+const STORAGE_KEY = 'app.language'
+
+function interpolate(template: string, values?: InterpolationValues) {
+  if (!values) {
+    return template
+  }
+
+  return template.replace(/\{\{\s*(\w+)\s*\}\}/g, (match, token) => {
+    if (!(token in values)) {
+      return match
+    }
+
+    const value = values[token]
+    return value == null ? '' : String(value)
+  })
+}
+
 type LanguageContextValue = {
   language: string
   setLanguage: (locale: string) => void
   resolvedLanguage: string
   translations: TranslationDictionary
-  t: (key: string, defaultValue?: string) => string
+  t: (key: string, defaultValue?: string, values?: InterpolationValues) => string
   isLoading: boolean
   error: Error | null
 }
@@ -28,13 +47,29 @@ export function LanguageProvider({
   defaultLanguage = 'en',
   fallbackLanguage,
 }: LanguageProviderProps) {
-  const [requestedLanguage, setRequestedLanguage] = useState(defaultLanguage)
-  const [resolvedLanguage, setResolvedLanguage] = useState(defaultLanguage)
+  const [requestedLanguage, setRequestedLanguage] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = window.localStorage.getItem(STORAGE_KEY)
+      if (stored) {
+        return stored
+      }
+    }
+    return defaultLanguage
+  })
+  const [resolvedLanguage, setResolvedLanguage] = useState<string>(requestedLanguage)
   const [translations, setTranslations] = useState<TranslationDictionary>({})
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)
 
   const requestIdRef = useRef(0)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    window.localStorage.setItem(STORAGE_KEY, requestedLanguage)
+  }, [requestedLanguage])
 
   useEffect(() => {
     let cancelled = false
@@ -82,8 +117,9 @@ export function LanguageProvider({
   }, [])
 
   const translate = useCallback(
-    (key: string, defaultValue?: string) => {
-      return translations[key] ?? defaultValue ?? key
+    (key: string, defaultValue?: string, values?: InterpolationValues) => {
+      const template = translations[key] ?? defaultValue ?? key
+      return interpolate(template, values)
     },
     [translations],
   )
