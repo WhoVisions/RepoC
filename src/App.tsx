@@ -1,21 +1,28 @@
-import { useState } from 'react'
 import './App.css'
+import CounterCard from './components/CounterCard'
+import SkipLink from './components/SkipLink'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <h1>RepoC</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
+      <SkipLink targetId="main-content" />
+      <div className="app-shell">
+        <header className="app-header">
+          <h1 className="app-title" id="app-title">
+            RepoC
+          </h1>
+          <p className="app-subtitle">
+            Accessible counter demo with keyboard shortcuts and ARIA support.
           </p>
-        </div>
+        </header>
+        <main
+          aria-labelledby="app-title"
+          className="app-main"
+          id="main-content"
+          tabIndex={-1}
+        >
+          <CounterCard />
+        </main>
       </div>
     </>
   )
