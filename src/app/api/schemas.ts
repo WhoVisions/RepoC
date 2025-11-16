@@ -86,7 +86,7 @@ export function validateBookingRequest(input: unknown): ValidationResult<Booking
     }
   }
 
-  if (!Number.isInteger(guests) || guests < 1) {
+  if (!Number.isInteger(guests as number) || (guests as number) < 1) {
     errors.push(errorFor("guests", "Guests must be a positive integer"));
   }
 
@@ -101,12 +101,12 @@ export function validateBookingRequest(input: unknown): ValidationResult<Booking
   return {
     success: true,
     data: {
-      guestName: guestName.trim(),
-      email: email.trim(),
+      guestName: (guestName as string).trim(),
+      email: (email as string).trim(),
       phone: typeof phone === "string" ? phone.trim() : undefined,
-      checkInDate,
-      checkOutDate,
-      guests,
+      checkInDate: checkInDate as string,
+      checkOutDate: checkOutDate as string,
+      guests: guests as number,
       specialRequests:
         typeof specialRequests === "string" && specialRequests.trim().length > 0
           ? specialRequests.trim()
