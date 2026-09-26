@@ -154,11 +154,13 @@ function useLanguageContext() {
   return context
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useLanguage() {
   const { language, setLanguage, resolvedLanguage, isLoading, error } = useLanguageContext()
   return { language, setLanguage, resolvedLanguage, isLoading, error }
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useTranslation() {
   const { t, translations, resolvedLanguage, isLoading, error } = useLanguageContext()
   return { t, translations, resolvedLanguage, isLoading, error }
