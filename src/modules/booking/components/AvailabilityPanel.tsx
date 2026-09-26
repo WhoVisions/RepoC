@@ -11,7 +11,7 @@ function toArray(data: AvailabilitySlot[] | AvailabilitySlot | null): Availabili
 export function AvailabilityPanel() {
   const [selectedDate, setSelectedDate] = useState<string | undefined>()
   const { data, isLoading, isError, error } = useAvailabilityQuery(selectedDate)
-  const slots = toArray(data ?? [])
+  const slots = toArray(data ?? null)
 
   return (
     <aside className="availability-panel" aria-labelledby="availability-heading">

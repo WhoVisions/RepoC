@@ -1,3 +1,4 @@
+// Polyfill localStorage for Node.js 22+ / 25+ JSDOM Vitest environments
 const store: Record<string, string> = {}
 const mockLocalStorage = {
   getItem: (key: string) => store[key] ?? null,
@@ -8,19 +9,26 @@ const mockLocalStorage = {
   get length() { return Object.keys(store).length }
 }
 
-Object.defineProperty(globalThis, 'localStorage', {
-  value: mockLocalStorage,
-  writable: true,
-  configurable: true
-})
-if (typeof window !== 'undefined') {
-  Object.defineProperty(window, 'localStorage', {
+try {
+  Object.defineProperty(globalThis, 'localStorage', {
     value: mockLocalStorage,
     writable: true,
     configurable: true
   })
+} catch {
+  // Ignore if already configured
 }
 
-import '@testing-library/jest-dom/vitest'
-import '../src/test-utils/server'
+if (typeof window !== 'undefined') {
+  try {
+    Object.defineProperty(window, 'localStorage', {
+      value: mockLocalStorage,
+      writable: true,
+      configurable: true
+    })
+  } catch {
+    // Ignore
+  }
+}
 
+export {}
