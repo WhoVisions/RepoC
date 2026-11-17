@@ -69,9 +69,9 @@ function App() {
           </p>
         </section>
       </main>
-      <main className="flex min-h-screen w-full bg-brand-surface">
+      <div className="flex min-h-screen w-full bg-brand-surface">
         <EditorShowcase />
-      </main>
+      </div>
       {analyticsConsent === null && (
         <div className="consent-banner">
           <p>Allow anonymous analytics so we can improve the app?</p>
