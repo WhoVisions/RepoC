@@ -8,10 +8,12 @@ export default defineConfig({
     postcss: {}
   },
   test: {
+    globals: true,
     environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
+    setupFiles: ['./tests/setup.ts', './src/setupTests.ts'],
+    css: true,
     coverage: {
       reporter: ['text', 'lcov'],
     },
-  },
+  }
 })
