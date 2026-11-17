@@ -1,0 +1,11 @@
+{
+  "app.title": "RepoC",
+  "app.instructions": "Edit src/App.tsx and save to test HMR",
+  "app.buttonLabel": "count is {{count}}",
+  "app.language.select": "Select language",
+  "app.language.english": "English",
+  "app.language.spanish": "Spanish",
+  "app.language.french": "French",
+  "app.language.german": "German",
+  "app.language.resolved": "Using {{locale}} translations"
+}
