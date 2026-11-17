@@ -6,6 +6,8 @@ import {
   trackEvent,
 } from './lib/analytics'
 import EditorShowcase from './components/EditorShowcase'
+import CounterCard from './components/CounterCard'
+import SkipLink from './components/SkipLink'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -40,14 +42,23 @@ function App() {
 
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-center gap-lg bg-brand-background px-lg py-xl">
+      <SkipLink targetId="main-content" />
+      <main
+        aria-labelledby="app-title"
+        className="flex min-h-screen flex-col items-center justify-center gap-lg bg-brand-background px-lg py-xl"
+        id="main-content"
+        tabIndex={-1}
+      >
         <section className="flex flex-col items-center gap-sm text-center">
           <span className="inline-flex items-center rounded-full bg-brand-primary/10 px-sm py-2xs text-sm font-semibold text-brand-primary">
             RepoC
           </span>
-          <h1 className="text-4xl font-semibold">Design tokens with Tailwind</h1>
+          <h1 className="text-4xl font-semibold" id="app-title">Design tokens with Tailwind</h1>
           <p className="max-w-xl text-brand-muted">
             A playground for applying brand-aligned colors, typography, and spacing scale directly from Tailwind class utilities.
+          </p>
+          <p className="app-subtitle">
+            Accessible counter demo with keyboard shortcuts and ARIA support.
           </p>
         </section>
 
@@ -68,7 +79,10 @@ function App() {
             <code className="rounded bg-brand-neutral/5 px-xs py-3xs font-mono text-brand-neutral">src/App.tsx</code> and save to test HMR.
           </p>
         </section>
+
+        <CounterCard />
       </main>
+      {/* Main's EditorShowcase kept, as a div so the PR's single main landmark stays the only <main>. */}
       <div className="flex min-h-screen w-full bg-brand-surface">
         <EditorShowcase />
       </div>

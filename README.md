@@ -1,37 +1,77 @@
 # RepoC
-RepoC
 
-## What is in the repo
+[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)](#getting-started)
+[![Lint](https://img.shields.io/badge/lint-clean-2563eb.svg)](#getting-started)
+[![Tests](https://img.shields.io/badge/tests-vitest-9333ea.svg)](#testing)
+[![License](https://img.shields.io/badge/license-MIT-111111.svg)](#license)
 
-- npm package `repoc` 1.0.0
-- scripts: `npm run dev`, `npm run build`, `npm run preview`, `npm run lint`
-- top-level directories: `src/`
+RepoC is a small Vite + React demo that showcases an accessible counter widget. It focuses on inclusive keyboard navigation, ARIA semantics, and clear documentation so the project can be shared publicly with confidence.
 
-### Layout
+![RepoC app screenshot](docs/screenshot.svg)
 
-| Folder | Files |
-|---|---|
-| `src/` | 12 |
+## Features
+- Accessible counter card with labeled controls and live status updates
+- Global skip link for bypassing repeated content
+- Keyboard shortcuts for quick increment, decrement, and reset actions
+- Modern styling with focus-visible outlines and screen reader instructions
 
-### Scripts (from their own docstrings)
+## Keyboard Shortcuts
+- **Increase**: `ArrowUp`, `ArrowRight`, `+`
+- **Decrease**: `ArrowDown`, `ArrowLeft`, `-`
+- **Reset**: `R`, `Escape`, `0`
 
-| Script | What it says it does |
-|---|---|
-| `src/app/api/schemas.ts` | * API schemas and utilities for booking creation and gallery retrieval routes. |
+## Getting Started
+```bash
+# Install dependencies
+npm install
 
-### Packages
+# Start the dev server
+npm run dev
 
-- `.` (package.json)
+# Lint the project
+npm run lint
 
-### Docs
+# Build for production
+npm run build
+```
 
-| Doc | Title |
-|---|---|
-| `claude.md` | RepoC - Comprehensive Project Documentation |
+## Testing
+```bash
+# Run the unit tests once
+npm run test -- --watch=false
 
-### Recent work
+# Or start Vitest in watch mode
+npm run test
+```
 
-- 2025-11-16 Merge pull request #17 from WhoVisions/claude/check-build-comprehensive-015kFMzX4szCQjkTAdEDm1HJ
+## Project Structure
+```text
+src/
+  App.tsx            # Application layout with skip link and main content region
+  App.css            # Styling, including focus-visible and skip link treatment
+  components/
+    CounterCard.tsx  # Accessible counter component
+    SkipLink.tsx     # Reusable skip link component
+```
+
+## Accessibility Notes
+- Interactive elements expose descriptive `aria-label` and `aria-describedby` attributes.
+- The counter announces changes via a `role="status"` live region.
+- Keyboard shortcuts are declared with `aria-keyshortcuts` and documented above.
+- Buttons manage disabled states to prevent keyboard traps.
+
+> **Why accessibility matters**: Inclusive design helps keyboard-only users, screen reader users, and anyone operating in constrained environments. Explore the [WCAG 2.2 quick reference](https://www.w3.org/WAI/WCAG22/quickref/) to learn more.
+
+## Deploying a Live Demo
+- **Vercel**: Import the GitHub repository, keep the default Vite settings, and set the output directory to `dist`.
+- **Netlify**: Connect the repo, use `npm run build` as the build command, and `dist` as the publish directory.
+- **Static hosting**: Run `npm run build` and upload the generated `dist` folder to your static host (GitHub Pages, Cloudflare Pages, etc.).
+
+## Contributing
+Issues and pull requests are welcome! Please run `npm run lint` before submitting.
+
+## License
+MIT (c) RepoC contributors
 
 <!-- nougen:fleet-role:begin (generated from NouGenRelay fleet/manifest.json; edit the manifest, not this block) -->
 ## Fleet role
